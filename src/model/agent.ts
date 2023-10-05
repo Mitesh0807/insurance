@@ -5,7 +5,7 @@ export interface IAgent extends Document {
     _id: string;
     name: string;
     email: string;
-    agentId: number;
+    agentId: string;
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -22,7 +22,7 @@ const AgentSchema: Schema = new mongoose.Schema<IAgent>({
             "Please enter a valid email",
         ],
     },
-    agentId: { type: Number, required: true },
+    agentId: { type: String, required: true },
     isActive: { type: "Boolean", default: true },
     createdAt: { type: "Date", default: Date.now },
     updatedAt: { type: "Date", default: Date.now },

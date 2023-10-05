@@ -54,7 +54,7 @@ export const getAllAgents = asyncHandler(async (req: Request, res: Response) => 
 export const updateAgent = asyncHandler(async (req: Request, res: Response) => {
     const {agentId} = req.params;
     const {name, email} = req.body;
-    const agent = await Agent.findOne({agentId});
+    const agent = await Agent.findById(agentId);
     if (!agent || !agent.agentId) {
         res.status(StatusCodes.NOT_FOUND).json({message: "Agent not found"});
         return;
