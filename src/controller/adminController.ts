@@ -21,7 +21,7 @@ export const adminLogin = asyncHandler(async (req: Request, res: Response) => {
         res.status(StatusCodes.BAD_REQUEST).json({message: "Incorrect password"});
     }
     const token =generateToken({_id: superAdmin._id, email: superAdmin.email, role: "admin"});
-    res.status(StatusCodes.OK).json({message: "Login success", superAdmin});
+    res.header("Authorization", token).status(StatusCodes.OK).json({message: "Login success", superAdmin});
 });
 
 
