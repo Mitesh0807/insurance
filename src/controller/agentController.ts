@@ -67,7 +67,7 @@ export const updateAgent = asyncHandler(async (req: Request, res: Response) => {
 
 export const deleteAgent = asyncHandler(async (req: Request, res: Response) => {
     const {agentId} = req.params;
-    const agent = await Agent.findOne({agentId});
+    const agent = await Agent.findOne({_id:agentId});
     if (!agent || !agent.agentId) {
         res.status(StatusCodes.NOT_FOUND).json({message: "Agent not found"});
         return;
