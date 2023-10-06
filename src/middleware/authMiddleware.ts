@@ -7,8 +7,9 @@ interface DecodedToken {
     role: string;
     _id: string;
 }
+const secret = "secret";
 const authMiddleware = asyncHandler(async (req: Request, res: Response, next: any) => {
-    const token: string = req.headers.authorization || req.cookies.accessToken;
+    const token: string = req.headers?.Authorization || req.cookies.accessToken;
     if (!token || token === "") {
         res.status(401).json({
             message:
@@ -22,7 +23,7 @@ const authMiddleware = asyncHandler(async (req: Request, res: Response, next: an
     } catch (error) {
         res.status(401).json({
             message: "Invalid access token",
-        })
+        });
     }
 }
 )
