@@ -17,7 +17,7 @@ export interface IDpendent extends Document{
     _id: string;
     firstName: string;
     lastName: string;
-    aadharNumber: number;
+    aadharNumber: Number; // Corrected type to Number
     dateOfBirth: string;
     image: string;
     gender: "Male" | "Female";
@@ -47,7 +47,7 @@ const dependentSchema = new Schema({
             validator: (aadharNumber: number) => {
                 return aadharNumber.toString().length === 12;
             },
-        }
+        },
         required: true
     },
     dateOfBirth: {
@@ -89,4 +89,4 @@ const dependentSchema = new Schema({
     }
 });
 
-export default mongoose.model<IDependent>("Dependent", dependentSchema);
+export default mongoose.model<IDpendent>("Dependent", dependentSchema);

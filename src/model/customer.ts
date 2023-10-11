@@ -14,6 +14,7 @@ all fields are required
  */
 
 import mongoose,{ Model, ObjectId,Schema,Document, Mongoose } from "mongoose";
+import { IDpendent } from "./dependent";
 
 export interface ICustomer extends Document{
     _id: string;
@@ -23,7 +24,7 @@ export interface ICustomer extends Document{
     aadharNumber: number;
     dateOfBirth: string;
     image: string;
-    dependents: Array<Dependent>;
+    dependents: Array<IDpendent>;
     gender: "Male" | "Female";
     address: string;
     isActive: boolean;
@@ -74,7 +75,7 @@ const customerSchema = new Schema({
         default: [],
         required: true,
         ref: "Dependent",
-    }
+    },
     isActive: {
         type: Boolean,
         default: false
@@ -91,3 +92,51 @@ const customerSchema = new Schema({
 
 
 export default mongoose.model<ICustomer>("Customer", customerSchema);
+
+
+/**
+ * create dummy data of this schema 
+ * 
+ const customer ={
+    firstName: "Raj",
+    lastName: "Kumar",
+    aadharNumber: 121212121212,
+    image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    gender: "Male",
+    address: "Mumbai",
+    dependents: [
+        {
+            firstName: "Raj",
+            lastName: "Kumar",
+            aadharNumber: 12121212121,
+            image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            gender: "Male",
+            address: "Mumbai",
+        },
+        {
+            firstName: "Raj",
+            lastName: "Kumar",
+            aadharNumber: 12121212124,
+            image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            gender: "Male",
+            address: "Mumbai",
+        },
+        {
+            firstName: "Raj",
+            lastName: "Kumar",
+            aadharNumber: 12121212125,
+            image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            gender: "Male",
+            address: "Mumbai",
+        },
+        {
+            firstName: "Raj",
+            lastName: "Kumar",
+            aadharNumber: 12121212126,
+            image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            gender: "Male",
+            address: "Mumbai",
+        }
+    ]
+ }
+ */

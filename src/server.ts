@@ -6,8 +6,12 @@ const app = express();
 import cors from "cors";
 import router from "./routes";
 connectToDb();
+/**
+ * Routes allow 5mb
+ */
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json( { limit: "5mb" }));
 app.use("/", router);
 
 const server = (app: express.Application) => {
