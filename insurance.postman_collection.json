@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "7e4f4c16-5b17-4772-bf05-686a5ea07f1b",
+		"name": "insurance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30303062",
+		"_collection_link": "https://www.postman.com/supply-cosmonaut-2629942/workspace/testing/collection/30303062-7e4f4c16-5b17-4772-bf05-686a5ea07f1b?action=share&source=collection_link&creator=30303062"
+	},
+	"item": [
+		{
+			"name": "localhost:8000/agent/651e9b7ee0d26d48792736a7",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"tessadast\",\r\n    \"email\":\"test@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/agent/651e9b7ee0d26d48792736a7",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"agent",
+						"651e9b7ee0d26d48792736a7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/agent/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test\",\r\n    \"email\":\"test@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/agent/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"agent",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/agent/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test\",\r\n    \"email\":\"test@mail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/agent/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"agent",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/admin/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\":\"mitesh\",\r\n    \"lastName\":\"savaliya\",\r\n    \"email\":\"mitesh@savaliya.com\",\r\n    \"password\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/admin/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"agentId\": \"5fa1b882d8b05012e4f679b1\",\r\n      \"firstName\": \"John\",\r\n      \"lastName\": \"Doe\",\r\n      \"aadharNumber\": 12348578902,\r\n      \"dateOfBirth\": \"1990-01-01\",\r\n      \"image\": \"path/to/image.jpg\",\r\n      \"gender\": \"Male\",\r\n      \"address\": \"1234 Elm St, Springfield\",\r\n      \"dependentList\":  [\r\n        {\r\n          \"firstName\": \"Sarah\",\r\n          \"lastName\": \"Doe\",\r\n          \"aadharNumber\": 9876543231022,\r\n          \"dateOfBirth\": \"2005-05-15\",\r\n          \"image\": \"path/to/dependent_image1.jpg\",\r\n          \"gender\": \"Female\",\r\n          \"address\": \"5678 Oak St, Springfield\",\r\n          \"relashionShip\": \"Child\",\r\n          \"relation\":\"test\"\r\n        },\r\n        {\r\n          \"firstName\": \"Michael\",\r\n          \"lastName\": \"Doe\",\r\n          \"aadharNumber\": 8765432100133,\r\n          \"dateOfBirth\": \"2010-08-22\",\r\n          \"image\": \"path/to/dependent_image2.jpg\",\r\n          \"gender\": \"Male\",\r\n          \"address\": \"7890 Pine St, Springfield\",\r\n          \"relashionShip\": \"Child\",\r\n          \"relation\":\"test\"\r\n        }\r\n      ]\r\n    }\r\n  ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/agent/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"agent",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/agent/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"agent",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activeinactive",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/admin/customer/6527971d263ab808ca740d2c",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"customer",
+						"6527971d263ab808ca740d2c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/admin/customer?pageNumber=1&limit=101",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "101"
+						},
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

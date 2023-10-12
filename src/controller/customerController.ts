@@ -1,7 +1,6 @@
 import { Customer, Dependent } from '../model/';
 import asyncHandler from 'express-async-handler';
 import { Response } from 'express';
-// import Request from "../interface.ts";
 import StatusCodes from "http-status-codes";
 import { IDpendent } from '../model/dependent';
 import Request from '../interface';
@@ -84,7 +83,7 @@ export const getAllCustomers = asyncHandler(async (req: Request, res: Response) 
     })
   );
 
-  res.status(StatusCodes.OK).json({ message: "Customers found", customerDetailInDetails });
+  res.status(StatusCodes.OK).json({count: customers.length, customerDetailInDetails });
 });
 
 
