@@ -33,24 +33,22 @@ export const createCustomer = asyncHandler(async (req: Request, res: Response) =
       gender: dependent.gender,
       address: dependent.address,
       relation: dependent.relation,
+      relashionShip: dependent.relashionShip,
     }
   });
   if (dependents && dependents.length > 5) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: "Dependents cannot be more than 5" });
     return;
   }
-  // console.log(dependents);
   const dependentsAadharNumber = dependents.map((dependent: IDpendent) => {
     return dependent.aadharNumber;
   })
-  // console.log(dependentsAadharNumber);
   const aadharNumberExist = await Customer.findOne({ aadharNumber: { $in: dependentsAadharNumber } });
   const dependentsExist = await Dependent.find({ aadharNumber: { $in: dependentsAadharNumber } });
   if (aadharNumberExist) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number" });
     return;
   }
-  // console.log(dependentsExist, dependentsExist.length, dependents);
   if (dependentsExist && dependentsExist.length > 0) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
     return;
@@ -59,7 +57,6 @@ export const createCustomer = asyncHandler(async (req: Request, res: Response) =
   const dependentsIds = dependentsArray.map((dependent) => { 
     return dependent._id; 
   });
-  // console.log(dependentsIds);
   const customer = await Customer.create({ firstName, lastName, aadharNumber, image, agentId,dateOfBirth,gender, address, dependents: dependentsIds });
   const data = {
     customer: customer,
@@ -89,3 +86,6 @@ export const getAllCustomers = asyncHandler(async (req: Request, res: Response) 
 
   res.status(StatusCodes.OK).json({ message: "Customers found", customerDetailInDetails });
 });
+
+
+

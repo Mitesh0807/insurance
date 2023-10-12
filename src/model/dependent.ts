@@ -22,7 +22,8 @@ export interface IDpendent extends Document{
     image: string;
     gender: "Male" | "Female";
     address: string;
-    relation: "Child" | "Parent" | "Spouse";
+    relation: string;
+    relashionShip:"Child" | "Parent" | "Spouse";
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -67,9 +68,13 @@ const dependentSchema = new Schema({
         type: String,
         required: true
     },
-    relation: {
+    relashionShip: {
         type: String,
         enum: ["Child", "Parent", "Spouse"],
+        required: true
+    },
+    relation: {
+        type: String,
         required: true
     },
     isActive: {
