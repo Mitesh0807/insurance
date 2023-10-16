@@ -8,7 +8,7 @@ import { StatusCodes } from 'http-status-codes';
 
 export const getCustomers = asyncHandler(async (req: Request, res: Response) => {
   // const { searchKey, pageSize = 10,LastEvaluatedKey } = req.query;
-  const {pageNumber=1,limit=10,firstName} = req.query;
+  const {pageNumber=1,limit=10,firstName,lastName,agentCode} = req.query;
   let query={};
   // if(searchKey && !!searchKey){
   //
@@ -36,10 +36,24 @@ export const getCustomers = asyncHandler(async (req: Request, res: Response) => 
       firstName: { $regex: firstName.toString(), $options: 'i' }
     }
   }
+  if(lastName && !!lastName){
+    query={
+      ...query,
+      lastName: { $regex: lastName.toString(), $options: 'i' }
+    }
+  }
+  if(agentCode && !!agentCode){
+    query={
+      ...query,
+      agentCode: { $regex: agentCode.toString(), $options: 'i' }
+    }
+  }
+  // cons
+  const totalCount = await Customer.countDocuments({});
   const pageSize = Number(limit);
   const pageNo = Number(pageNumber);
   const customers = await Customer.find(query).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 }).populate('dependents');
-  res.status(StatusCodes.OK).json({customers});
+  res.status(StatusCodes.OK).json({count:totalCount,customers});
   return;
 });
 

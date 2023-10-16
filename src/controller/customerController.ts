@@ -20,8 +20,7 @@ export const createCustomer = asyncHandler(async (req: Request, res: Response) =
     res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
     return;
   }
-  // console.log(dependentsIsExist, dependentsIsExist.length, dependentsIsExist);
-
+  
   const dependents = dependentList.map((dependent: IDpendent) => {
     return {
       firstName: dependent.firstName,
