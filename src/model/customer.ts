@@ -34,9 +34,7 @@ export interface ICustomer extends Document{
 
 const customerSchema = new Schema({
     agentId: {
-        type:mongoose.Types.ObjectId,
-        required: true,
-        ref:"Agent",
+        type: String,
     },
     firstName: {
         type: String,
