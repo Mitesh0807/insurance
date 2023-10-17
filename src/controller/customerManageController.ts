@@ -75,7 +75,7 @@ export const switchApprovalOFCustomer = asyncHandler(async (req: Request, res: R
 
 export const getCustomerById = asyncHandler(async (req: Request, res: Response) => {
   const {customerId} = req.params;
-  const customer = await Customer.findOne({_id:customerId});
+  const customer = await Customer.findOne({_id:customerId}).populate('dependents');
   if (!customer || !customer._id) {
     res.status(StatusCodes.NOT_FOUND).json({message: "Customer not found"});
     return;
