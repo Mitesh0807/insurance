@@ -23,7 +23,7 @@ export interface IDpendent extends Document{
     gender: "Male" | "Female";
     address: string;
     relation: string;
-    relashionShip:"Child" | "Parent" | "Spouse";
+    relationShip:"Child" | "Parent" | "Spouse";
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -43,7 +43,6 @@ const dependentSchema = new Schema({
     },
     aadharNumber: {
         type: Number,
-        unique: true,
         validator: {
             validator: (aadharNumber: number) => {
                 return aadharNumber.toString().length === 12;
@@ -68,7 +67,7 @@ const dependentSchema = new Schema({
         type: String,
         required: true
     },
-    relashionShip: {
+    relationShip: {
         type: String,
         enum: ["Child", "Parent", "Spouse"],
         required: true

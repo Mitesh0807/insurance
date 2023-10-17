@@ -48,10 +48,10 @@ export const getCustomers = asyncHandler(async (req: Request, res: Response) => 
       agentCode: { $regex: agentCode.toString(), $options: 'i' }
     }
   }
-  // cons
   const totalCount = await Customer.countDocuments({});
   const pageSize = Number(limit);
   const pageNo = Number(pageNumber);
+  console.log(totalCount,":totalCount");
   const customers = await Customer.find(query).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 }).populate('dependents');
   res.status(StatusCodes.OK).json({count:totalCount,customers});
   return;
@@ -68,5 +68,18 @@ export const switchApprovalOFCustomer = asyncHandler(async (req: Request, res: R
   customer.isActive = !customer.isActive;
   const updatedCustomer = await customer.save();
   res.status(StatusCodes.OK).json({message: "Customer approved", updatedCustomer});
+  return;
+})
+
+
+
+export const getCustomerById = asyncHandler(async (req: Request, res: Response) => {
+  const {customerId} = req.params;
+  const customer = await Customer.findOne({_id:customerId});
+  if (!customer || !customer._id) {
+    res.status(StatusCodes.NOT_FOUND).json({message: "Customer not found"});
+    return;
+  }
+  res.status(StatusCodes.OK).json(customer);
   return;
 })

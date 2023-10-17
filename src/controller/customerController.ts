@@ -10,16 +10,16 @@ import Request from '../interface';
 
 export const createCustomer = asyncHandler(async (req: Request, res: Response) => {
   const { firstName, lastName, aadharNumber, image, gender,dateOfBirth, agentId,address, dependentList } = req.body;
-  const customerIsExist = await Customer.findOne({ aadharNumber });
-  const dependentsIsExist = await Dependent.find({ aadharNumber });
-  if (customerIsExist) {
-    res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number" });
-    return;
-  }
-  if (dependentsIsExist && dependentsIsExist.length > 0) {
-    res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
-    return;
-  }
+  // const customerIsExist = await Customer.findOne({ aadharNumber });
+  // const dependentsIsExist = await Dependent.find({ aadharNumber });
+  // if (customerIsExist) {
+  //   res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number" });
+  //   return;
+  // }
+  // if (dependentsIsExist && dependentsIsExist.length > 0) {
+  //   res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
+  //   return;
+  // }
   
   const dependents = dependentList.map((dependent: IDpendent) => {
     return {
@@ -31,26 +31,26 @@ export const createCustomer = asyncHandler(async (req: Request, res: Response) =
       gender: dependent.gender,
       address: dependent.address,
       relation: dependent.relation,
-      relashionShip: dependent.relashionShip,
+      relationShip: dependent.relationShip,
     }
   });
   if (dependents && dependents.length > 5) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: "Dependents cannot be more than 5" });
     return;
   }
-  const dependentsAadharNumber = dependents.map((dependent: IDpendent) => {
-    return dependent.aadharNumber;
-  })
-  const aadharNumberExist = await Customer.findOne({ aadharNumber: { $in: dependentsAadharNumber } });
-  const dependentsExist = await Dependent.find({ aadharNumber: { $in: dependentsAadharNumber } });
-  if (aadharNumberExist) {
-    res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number" });
-    return;
-  }
-  if (dependentsExist && dependentsExist.length > 0) {
-    res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
-    return;
-  }
+  // const dependentsAadharNumber = dependents.map((dependent: IDpendent) => {
+  //   return dependent.aadharNumber;
+  // })
+  // const aadharNumberExist = await Customer.findOne({ aadharNumber: { $in: dependentsAadharNumber } });
+  // const dependentsExist = await Dependent.find({ aadharNumber: { $in: dependentsAadharNumber } });
+  // if (aadharNumberExist) {
+  //   res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number" });
+  //   return;
+  // }
+  // if (dependentsExist && dependentsExist.length > 0) {
+  //   res.status(StatusCodes.BAD_REQUEST).json({ message: "Customer already exist with this aadhar number already registered with dependents" });
+  //   return;
+  // }
   const dependentsArray = await Dependent.insertMany(dependents);
   const dependentsIds = dependentsArray.map((dependent) => { 
     return dependent._id; 

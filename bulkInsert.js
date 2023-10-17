@@ -16,7 +16,7 @@ let sampledata={
         "image": "path/to/dependent_image1.jpg",
         "gender": "Female",
         "address": "5678 Oak St, Springfield",
-        "relashionShip": "Child",
+        "relationShip": "Child",
         "relation":"test"
       },
       {
@@ -27,7 +27,7 @@ let sampledata={
         "image": "path/to/dependent_image2.jpg",
         "gender": "Male",
         "address": "7890 Pine St, Springfield",
-        "relashionShip": "Child",
+        "relationShip": "Child",
         "relation":"test"
       }
     ]
