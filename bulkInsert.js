@@ -71,7 +71,7 @@ async function main() {
       gender: generateRandomGender(),
       aadharNumber: generateRandomAadharNumber(),
       dateOfBirth: generateRandomDateOfBirth(),
-      dependentList: [
+      dependents: [
         {
           ...sampledata.dependentList[0],
           firstName: generateRandomName(),

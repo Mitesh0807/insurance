@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 mongoose.set("strictQuery", false);
+
 async function connectToDb(): Promise<void> {
   try {
     await mongoose.connect(process.env.MONGOURI as string, {});
