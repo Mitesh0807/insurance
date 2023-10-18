@@ -18,9 +18,9 @@ export const getCustomers = asyncHandler(async (req: Request, res: Response) => 
         { lastName: regex },
         { agentId: searchKey }
       ]
-    })
-    .populate('dependents');
-    res.status(StatusCodes.OK).json({ count: totalCount,customers: cutomersData })
+    }).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 })
+      .populate('dependents');
+    res.status(StatusCodes.OK).json({ count: totalCount, customers: cutomersData })
     return;
   }
   const customers = await Customer.find({}).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 }).populate('dependents');
