@@ -20,6 +20,13 @@ export const getCustomers = asyncHandler(async (req: Request, res: Response) => 
       ]
     }).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 })
       .populate('dependents');
+      const totalCount=Customer.countDocuments({
+        $or: [
+          { firstName: regex },
+          { lastName: regex },
+          { agentId: searchKey }
+        ]
+      })
     res.status(StatusCodes.OK).json({ count: totalCount, customers: cutomersData })
     return;
   }
