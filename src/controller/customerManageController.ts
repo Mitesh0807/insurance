@@ -33,7 +33,7 @@ export const getCustomers = asyncHandler(async (req: Request, res: Response) => 
         return customer?._id.toString() == id;
       })
     });
-    res.status(StatusCodes.OK).json({ count: totalCount, uniqueCustomers })
+    res.status(StatusCodes.OK).json({ count: totalCount,customers: uniqueCustomers })
     return;
   }
   const customers = await Customer.find({}).skip((pageNo - 1) * pageSize).limit(pageSize).sort({ _id: -1 }).populate('dependents');
