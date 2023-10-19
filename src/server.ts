@@ -10,9 +10,14 @@ connectToDb();
  * Routes allow 5mb
  */
 // app.use("Access-Control-Allow-Origin");
-app.use(cors({ origin: "*", credentials: true,exposedHeaders: "Authorization" }));
+app.use(cors({
+  origin:"*",
+  credentials:true,
+  exposedHeaders:"Authorization",
+  methods:"GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+}));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json( { limit: "5mb" }));
+app.use(express.json());
 app.use("/", router);
 
 const server = (app: express.Application) => {

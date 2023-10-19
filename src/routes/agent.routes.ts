@@ -3,7 +3,7 @@ const agentRouter = express.Router();
 import { getAgent, getAllAgents, createAgent, updateAgent, deleteAgent } from "../controller/agentController";
 import { createCustomer, getAllCustomers } from "../controller/customerController";
 import authMiddleware from "../middleware/authMiddleware";
-agentRouter.post("/customer", createCustomer).get("/customer", getAllCustomers);
+agentRouter.post("/customer", createCustomer).get("/customer", authMiddleware,getAllCustomers);
 agentRouter.post("/", createAgent).get("/", getAllAgents);
 agentRouter.put("/:agentId", authMiddleware, updateAgent);
 agentRouter.delete("/:agentId", deleteAgent);
