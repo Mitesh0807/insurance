@@ -1,10 +1,11 @@
 import express, { Router } from "express";
 const agentRouter = express.Router();
-import {getAgent, getAllAgents, createAgent, updateAgent, deleteAgent} from "../controller/agentController";
+import { getAgent, getAllAgents, createAgent, updateAgent, deleteAgent } from "../controller/agentController";
 import { createCustomer, getAllCustomers } from "../controller/customerController";
-agentRouter.post("/customer",createCustomer).get("/customer", getAllCustomers);
+import authMiddleware from "../middleware/authMiddleware";
+agentRouter.post("/customer", createCustomer).get("/customer", getAllCustomers);
 agentRouter.post("/", createAgent).get("/", getAllAgents);
-agentRouter.put("/:agentId", updateAgent);
+agentRouter.put("/:agentId", authMiddleware, updateAgent);
 agentRouter.delete("/:agentId", deleteAgent);
 agentRouter.get("/:agentId", getAgent);
 export default agentRouter;

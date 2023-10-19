@@ -30,3 +30,4 @@ const authMiddleware = asyncHandler(async (req: Request, res: Response, next: an
 
 
 
+export default authMiddleware;
